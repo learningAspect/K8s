@@ -1,0 +1,35 @@
+************ Interfaces ****************
+Network Interfaces :- Networking interfaces primarily provide traffic connectivity
+Service Interfaces :- Services interfaces provide specific capabilities for manipulate traffic before it is delivered to its destination.
+Special Interfaces :- Special interfaces include management interfaces, the loopback interface, and the discard interface.
+
+MAC Addressing
+A MAC address is the serial number permanently stored in a device adapter to uniquely identify the device. MAC addresses operate at the Data Link Layer, while IP addresses operate at the Network Layer. The IP address of a device can change as the device is moved around a network to different IP subnets, but the MAC address remains the same, because it is physically tied to the device.
+
+Within an IP network, devices match each MAC address to its corresponding configured IP address by means of the Address Resolution Protocol (ARP). ARP maintains a table with a mapping for each MAC address in the network.
+
+Loopback 
+The Internet Protocol (IP) specifies a loopback network with the (IPv4) address 127.0.0.0/8. Most IP implementations support a loopback interface (lo0) to represent the loopback facility. Any traffic that a computer program sends on the loopback network is addressed to the same computer. The most commonly used IP address on the loopback network is 127.0.0.1 for IPv4 and ::1 for IPv6. The standard domain name for the address is localhost.
+
+
+You use the loopback interface to identify the device. While you can use any interface address to determine if the device is online, the loopback address is the preferred method. Whereas interfaces might be removed or addresses changed based on network topology changes, the loopback address never changes.
+
+The loopback interface supports many different network and operational functions and is an always-up interface. This means that the loopback interface ensures that the device is reachable, even if some of the physical interfaces are down or removed, or an IP address has changed. In most cases, you always define a loopback interface.
+
+**************************** Kubernetes ****************************
+
+Container to Container Communication on same pod happens through localhost within containers. localhost:<port> //** port resembles here to container port
+
+Kubernetes networking addresses 4 concerns:
+
+1. containers within K8s pod use loopback to communicate.
+2. Cluster networking provides communication between different pods.
+3. Service resource let you expose an application running in pods to be reachable from outside your cluster.
+4. You can also use services to publish services only for consumption inside your cluster.
+
+
+Pod to Pod communication on same worker node happens through pod ip.
+
+By default Pod's IP will not be accessible outside node.
+
+
